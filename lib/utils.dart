@@ -37,7 +37,6 @@ class Utils {
   }
 
   static Future<String> saveImageToLocal(File imageFile) async {
-    // Simpan ke direktori aplikasi dengan nama unik
     final directory = await Directory.systemTemp;
     final fileName = 'pegawai_${DateTime.now().millisecondsSinceEpoch}.jpg';
     final savedImage = await imageFile.copy('${directory.path}/$fileName');

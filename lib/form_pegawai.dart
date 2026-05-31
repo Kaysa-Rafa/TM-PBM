@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:geolocator/geolocator.dart';
 import 'model_pegawai.dart';
 import 'database_helper.dart';
 import 'utils.dart';
@@ -58,14 +57,14 @@ class _FormPegawaiState extends State<FormPegawai> {
 
   Future<void> _pickImage(ImageSource source) async {
     try {
-      final XFile? image = await _picker.pickImage(
+      final picked = await _picker.pickImage(
         source: source,
         maxWidth: 800,
         maxHeight: 800,
         imageQuality: 85,
       );
-      if (image != null) {
-        final savedPath = await Utils.saveImageToLocal(File(image.path));
+      if (picked != null) {
+        final savedPath = await Utils.saveImageToLocal(File(picked.path));
         setState(() => _fotoPath = savedPath);
       }
     } catch (e) {
